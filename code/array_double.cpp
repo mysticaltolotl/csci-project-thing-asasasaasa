@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 
+
 /**
  * Reads the input file line by line, takes in the
  * query params along with reference of the passengers array
@@ -9,6 +10,8 @@
 void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passengers, int& arrCapacity, int& recordIdx, int& doublingCounter) {
 
 	string line;
+
+    int argsa;
 
 	AirlinePassenger tempPassenger;
 
