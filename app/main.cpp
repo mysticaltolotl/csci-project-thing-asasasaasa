@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     string *args = new string[6];
     AirlinePassenger *passengers = new AirlinePassenger[arrCapacity];
 
-    for (int q = 0; q < 5; ++q)
+    for (int q = 0; q < 6; ++q)
     {
         args[q] = argv[q];
     }

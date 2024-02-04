@@ -11,8 +11,6 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
 
 	string line;
 
-    int argsa;
-
 	AirlinePassenger tempPassenger;
 
 	if (input.is_open()) // check that this file exists
@@ -42,10 +40,12 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
 		cout << "err: can not open file" << endl;
 	}
 
-    AirlinePassenger *queriedPassengers = new AirlinePassenger[2];
-    int finalArrCapacity = 2;
+
+    int finalArrCapacity = 10;
     int finalRecordIdx = 0;
     int finalDoublingCounter = 0;
+	
+	AirlinePassenger *queriedPassengers = new AirlinePassenger[finalArrCapacity];
 
     int ageStart, ageEnd;
     stringstream strValue;
@@ -57,7 +57,9 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
     strValue2 << queryParams[5];
     strValue2 >> ageEnd;
 
-    for(int q = 0; q < arrCapacity; q++)
+    //cout << ageStart << " " << ageEnd << endl;
+
+    for(int q = 0; q < recordIdx; q++)
     {
         if(isPassengerQueried(passengers[q], queryParams[2], queryParams[3], ageStart, ageEnd))
         {
@@ -65,6 +67,10 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
             finalRecordIdx++;
         }
     }
+
+    cout << "Array doubled: " << finalDoublingCounter << endl;
+	cout << "Total number of passengers returned after the query: " << finalRecordIdx << endl;
+
   
     printQueriedPassengers(queriedPassengers, finalRecordIdx);
 }
@@ -77,11 +83,14 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
 bool isPassengerQueried(AirlinePassenger passenger, string queryLocation, string queryAirline, int startAge, int endAge) {
 	if (passenger.location == queryLocation)
 	{
+        //cout << "location" << endl;
 		if (passenger.airline == queryAirline)
 		{
+            //cout << "airline" << endl;
 			if (passenger.age >= startAge && passenger.age <= endAge)
 			{
 				return true;
+                //cout << "true" << endl;
 			}
 		}
 	}
@@ -141,7 +150,8 @@ void sortPassengers(AirlinePassenger* passengers, int length) {
 			{
 				for (int s = 0; s < passengers[r].name.length() - 1; s++)
 				{
-					if (passengers[r].name[s] > passengers[r + 1].name[s])
+					//cout << passengers[r].name[s];
+					if (passengers[r].name[s] < passengers[r+1].name[s])
 					{
 						swap(passengers[r], passengers[r + 1]);
 					}
@@ -156,8 +166,6 @@ void sortPassengers(AirlinePassenger* passengers, int length) {
  */
 void printQueriedPassengers(AirlinePassenger* passengers, int numOfRecords) {
 	sortPassengers(passengers, numOfRecords);
-	//cout << "Array doubled: 0" << endl;
-	//cout << "Total number of passengers returned after the query: " << numOfRecords << endl;
 	cout << "Queried Passengers" << endl;
 	cout << "---------------------------------------" << endl;
 	for (int i = 0; i < numOfRecords; ++i) {
