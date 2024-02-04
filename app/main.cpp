@@ -13,8 +13,8 @@ int main(int argc, char* argv[])
 {
 
     int arrCapacity = 10;
-    int recordIdx;
-    int doublingCounter;
+    int recordIdx = 0;
+    int doublingCounter = 0;
 
     string *args = new string[5];
     AirlinePassenger *passengers = new AirlinePassenger[arrCapacity];
@@ -28,7 +28,5 @@ int main(int argc, char* argv[])
 
     parseFile(input, args[], *passengers, arrCapacity, recordIdx, doublingCounter);
 
-
-    //TODO
     return 0;
 }

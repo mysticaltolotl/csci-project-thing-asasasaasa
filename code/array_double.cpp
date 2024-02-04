@@ -9,12 +9,10 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger *&passeng
 
     string line;
 
+    AirlinePassenger tempPassenger;
+
     if (input.is_open()) // check that this file exists
     {
-        // TODO 2:  Read each line from the file
-        //          for each line do the following
-        //               extract name, extract email, exract birthday
-        //               call the addAemployee function to add them in the array
         while (getline(input, line))
         {
             stringstream ss(line);
@@ -23,11 +21,13 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger *&passeng
             if(line.size() != 0)
             {
                 stringstream instring(line);
-                getline(instring, name, ',');
-                getline(instring, emailid, ',');
-                getline(instring, birthday, ',');
-                addAnEmployee(array, name, birthday, emailid, length);
-                length++;
+                getline(instring, tempPassenger.name, ',');
+                getline(instring, tempPassenger.airline, ',');
+                getline(instring, tempPassenger.location, ',');
+                getline(instring, tempPassenger.age, ',')
+                addPassenger()
+                recordIdx++;
+                addPassenger(passengers, tempPassenger, arrCapacity, recordIdx, doublingCounter) {
             }
         }
     }
@@ -38,12 +38,21 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger *&passeng
 }
 
 /**
- * Checks if the current passenger has their age in 
+ * Checks if the passenger has their age in 
  * the queried age range, and their location and 
  * the airline matching with the queried ones.
  */
 bool isPassengerQueried(AirlinePassenger passenger, string queryLocation, string queryAirline, int startAge, int endAge) {
-    //TODO
+    if(passenger.location == queryLocation)
+    {
+        if(passenger.airline == queryAirline)
+        {
+            if(passenger.age >= startAge && passenger.age <= endAge)
+            {
+                return true;
+            }
+        }
+    }
     return false;
 }
 
@@ -63,7 +72,7 @@ void resizeArr(AirlinePassenger *&passengers, int *arraySize) {
     }
     delete[] passengers;
 
-    array = dbl;
+    passengers = newArray;
 }
 
 /**
@@ -86,7 +95,27 @@ void addPassenger(AirlinePassenger *&passengers, AirlinePassenger airlinePasseng
  * Tie breaker: Alphabetical order of names.
  */
 void sortPassengers(AirlinePassenger *passengers, int length) {
-    //TODO
+    
+    for (q = 0; q < length - 1; q++)
+    {
+        for (r = 0; r < length - q - 1; r++)
+        {
+            if (passengers[r].age > passengers[r + 1].age) 
+            {
+                swap(passengers[r], passengers[r + 1]); 
+            }
+            else
+            {
+                for(int s = 0; s < passengers[r].name - 1; s++)
+                {
+                    if(passengers[r].name[s] > passengers[r].name[s])
+                    {
+                        swap(passengers[r], passengers[r + 1]); 
+                    }
+                }
+            }
+        }
+    }
 }
 
 /**

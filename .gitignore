@@ -1,0 +1,7 @@
+# exclude everything
+build/*
+ipch
+.ipynb_checkpoints
+
+# exception to the rule
+!build/.gitkeep 
