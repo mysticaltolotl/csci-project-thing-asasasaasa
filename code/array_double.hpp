@@ -18,7 +18,7 @@ struct AirlinePassenger
 
 void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passengers, int& arrCapacity, int& recordIdx, int& doublingCounter);
 bool isPassengerQueried(AirlinePassenger passenger, string queryLocation, string queryAirline, int startAge, int endAge);
-void resizeArr(AirlinePassenger*& passengers, int& arraySize);
+void resizeArr(AirlinePassenger*& passengers, int* arraySize);
 void addPassenger(AirlinePassenger*& passengers, AirlinePassenger airlinePassenger, int& arrCapacity, int& recordIdx, int& doublingCounter);
 void sortPassengers(AirlinePassenger* passengers, int length);
 void printQueriedPassengers(AirlinePassenger* passengers, int numOfRecords);

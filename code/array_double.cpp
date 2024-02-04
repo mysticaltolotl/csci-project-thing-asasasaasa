@@ -65,11 +65,11 @@ bool isPassengerQueried(AirlinePassenger passenger, string queryLocation, string
  * of the array by making a new array of size the current
  * size and copying the elements of the old one.
  */
-void resizeArr(AirlinePassenger*& passengers, int& arraySize) {
+void resizeArr(AirlinePassenger*& passengers, int* arraySize) {
 
-	AirlinePassenger* newArray = new AirlinePassenger[arraySize * 2];
+	AirlinePassenger* newArray = new AirlinePassenger[*arraySize * 2];
 
-	for (int q = 0; q < arraySize; q++) {
+	for (int q = 0; q < *arraySize; q++) {
 
 		newArray[q] = passengers[q];
 	}
@@ -86,7 +86,7 @@ void resizeArr(AirlinePassenger*& passengers, int& arraySize) {
 void addPassenger(AirlinePassenger*& passengers, AirlinePassenger airlinePassenger, int& arrCapacity, int& recordIdx, int& doublingCounter) {
 	if (recordIdx == arrCapacity)
 	{
-		resizeArr(passengers, arrCapacity);
+		resizeArr(passengers, &arrCapacity);
 		doublingCounter++;
 	}
 

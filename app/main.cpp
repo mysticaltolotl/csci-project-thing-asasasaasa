@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     ifstream input;
 
-    parseFile(input, args[], *passengers, arrCapacity, recordIdx, doublingCounter);
+    parseFile(input, args, passengers, arrCapacity, recordIdx, doublingCounter);
 
     return 0;
 }
