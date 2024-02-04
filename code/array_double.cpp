@@ -73,6 +73,7 @@ void resizeArr(AirlinePassenger*& passengers, int* arraySize) {
 
 		newArray[q] = passengers[q];
 	}
+    *arraySize *= 2;
 	delete[] passengers;
 
 	passengers = newArray;
@@ -103,11 +104,11 @@ void sortPassengers(AirlinePassenger* passengers, int length) {
 	{
 		for (int r = 0; r < length - q - 1; r++)
 		{
-			if (passengers[r].age > passengers[r + 1].age)
+			if (passengers[r].age < passengers[r + 1].age)
 			{
 				swap(passengers[r], passengers[r + 1]);
 			}
-			else
+			else if (passengers[r].age == passengers[r + 1].age)
 			{
 				for (int s = 0; s < passengers[r].name.length() - 1; s++)
 				{
@@ -125,9 +126,12 @@ void sortPassengers(AirlinePassenger* passengers, int length) {
  * Call the sortPassenger function and print the name and the age of the passenger.
  */
 void printQueriedPassengers(AirlinePassenger* passengers, int numOfRecords) {
-	//TODO
 	sortPassengers(passengers, numOfRecords);
+	cout << "Array doubled: 0" << endl;
+	cout << "Total number of passengers returned after the query: " << numOfRecords << endl;
+	cout << "Queried Passengers" << endl;
+	cout << "---------------------------------------" << endl;
 	for (int i = 0; i < numOfRecords; ++i) {
-		cout << "Name: " << passengers[i].name << "   Age: " << passengers[i].age << endl;
+		cout << passengers[i].name << " " << passengers[i].age << endl;
 	}
 }
