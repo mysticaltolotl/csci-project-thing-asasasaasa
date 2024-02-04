@@ -29,6 +29,6 @@ int main(int argc, char* argv[])
     input.open(argv[1]);
 
     parseFile(input, args, passengers, arrCapacity, recordIdx, doublingCounter);
-
+    
     return 0;
 }

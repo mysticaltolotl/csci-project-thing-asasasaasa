@@ -38,6 +38,32 @@ void parseFile(ifstream& input, string queryParams[], AirlinePassenger*& passeng
 	{
 		cout << "err: can not open file" << endl;
 	}
+
+    AirlinePassenger *queriedPassengers = new AirlinePassenger[2];
+    int finalArrCapacity = 2;
+    int finalRecordIdx = 0;
+    int finalDoublingCounter = 0;
+
+    int ageStart, ageEnd;
+    stringstream strValue;
+    stringstream strValue2; //keeps the first stringstream from polluting ageEnd, dunno if this is neccessary
+
+    strValue << queryParams[4];
+    strValue >> ageStart;
+
+    strValue2 << queryParams[5];
+    strValue2 >> ageEnd;
+
+    for(int q = 0; q < arrCapacity; q++)
+    {
+        if(isPassengerQueried(passengers[q], queryParams[2], queryParams[3], ageStart, ageEnd))
+        {
+            addPassenger(queriedPassengers, passengers[q], finalArrCapacity, finalRecordIdx, finalDoublingCounter);
+            finalRecordIdx++;
+        }
+    }
+  
+    printQueriedPassengers(queriedPassengers, finalRecordIdx);
 }
 
 /**
@@ -127,8 +153,8 @@ void sortPassengers(AirlinePassenger* passengers, int length) {
  */
 void printQueriedPassengers(AirlinePassenger* passengers, int numOfRecords) {
 	sortPassengers(passengers, numOfRecords);
-	cout << "Array doubled: 0" << endl;
-	cout << "Total number of passengers returned after the query: " << numOfRecords << endl;
+	//cout << "Array doubled: 0" << endl;
+	//cout << "Total number of passengers returned after the query: " << numOfRecords << endl;
 	cout << "Queried Passengers" << endl;
 	cout << "---------------------------------------" << endl;
 	for (int i = 0; i < numOfRecords; ++i) {
