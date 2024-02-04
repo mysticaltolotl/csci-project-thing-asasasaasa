@@ -1,0 +1,9 @@
+Array doubled: 0
+Total number of passengers returned after the query: 5
+Queried Passengers
+---------------------------------------
+Janet Due 35
+Jane Doe 25
+Macbeth Spears 25
+Mary Jane 25
+Jack Donald 22
